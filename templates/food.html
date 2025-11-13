@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Resultados Nutricionales{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4 fw-bold text-primary">Resultados Nutricionales</h2>
+
+  {% for r in resultados %}
+    <div class="card mb-3 shadow-sm rounded-4">
+      <div class="card-body">
+        <h4 class="card-title text-center">{{ r.nombre }}</h4>
+        {% if r.error %}
+          <p class="text-danger text-center">{{ r.error }}</p>
+        {% else %}
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Calorías: {{ r.calorias }}</li>
+            <li class="list-group-item">Proteínas: {{ r.proteinas }}</li>
+            <li class="list-group-item">Grasas: {{ r.grasas }}</li>
+            <li class="list-group-item">Carbohidratos: {{ r.carbohidratos }}</li>
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+
+  <div class="text-center mt-3">
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Volver</a>
+  </div>
+</div>
+
+{% endblock %}
